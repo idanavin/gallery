@@ -1,5 +1,4 @@
-//var images = ["https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1001233_222390834578427_319555050_n.jpg?_nc_cat=104&oh=88c349afa73876ad20cfd34c6b6fc6b8&oe=5C2DB41B", "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1170845_222390877911756_1583226258_n.jpg?_nc_cat=107&oh=97e12f18f8636bc7c932d66781e4095e&oe=5C304A47",
-//    "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1005473_222390457911798_1227791846_n.jpg?_nc_cat=101&oh=093c379d5c5c5451ea022e5743300d84&oe=5C15E4C0", "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1150992_222390417911802_1716521138_n.jpg?_nc_cat=104&oh=4d3858864dbb1ae09d63f1b6de38f078&oe=5C264095"];
+//var images = ["https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1001233_222390834578427_319555050_n.jpg?_nc_cat=104&oh=88c349afa73876ad20cfd34c6b6fc6b8&oe=5C2DB41B", "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1170845_222390877911756_1583226258_n.jpg?_nc_cat=107&oh=97e12f18f8636bc7c932d66781e4095e&oe=5C304A47", "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1005473_222390457911798_1227791846_n.jpg?_nc_cat=101&oh=093c379d5c5c5451ea022e5743300d84&oe=5C15E4C0", "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1150992_222390417911802_1716521138_n.jpg?_nc_cat=104&oh=4d3858864dbb1ae09d63f1b6de38f078&oe=5C264095"];
 var images = [];
 //var extraImages = [];
 var allImages = [];
@@ -29,6 +28,13 @@ function change(sign) {
     }
 }
 
+// function writeToFile(imageUrl){
+//     var fso = new ActiveXObject("Scripting.FileSystemObject");
+//     var fh = fso.OpenTextFile("assets/txtImg.txt", 8);
+//     fh.WriteLine(imageUrl.value);
+//     fh.Close(); 
+// }
+
 function add() {
     var imageUrl = document.getElementById('addUrl');
     if (!imageUrl.checkValidity()) {
@@ -36,27 +42,9 @@ function add() {
     }
     else {
         images.push(imageUrl.value);
-        var newBar = document.getElementById('images');
-        var newImg = document.createElement('img');
-        newImg.src = images[images.length - 1];
-        newImg.classList.add('bar');
-        newImg.style.height = '100px';
-        newImg.style.width = 'auto';
-        newImg.style.margin = '10px';
-        newBar.appendChild(newImg);
-        newBar.addEventListener('click', function () { 
-            var currentImage = this.src;
-            var newPos = images.findIndex(function (src) { return currentImage === src; });
-            if (newPos >= 0) {          
-                var main = document.getElementById('middleIMG');
-                main.src = this.src;
-                nextPic = (newPos) % images.length;
-                prevPic = (newPos - 1) % images.length;
-            }
-            else {
-                console.log(newPos + ' error');
-            }
-        });
+        var index = (images.length - 1);
+        disImg(index);
+        // writeToFile(imageUrl);
     }
 }
 
@@ -79,7 +67,7 @@ function disImg(index) {  //general function to load images bar
     barImage.style.margin = '10px';
     bar.appendChild(barImage);
     barImage.addEventListener('click', function () { 
-        var currentImage = barImage.src;
+        var currentImage = images[index];
         var newPos = images.findIndex(function (src) { return currentImage === src; });
         if (newPos >= 0) {
             var main = document.getElementById('middleIMG');
@@ -116,7 +104,7 @@ window.onload = function () {
     // });
 
     $.get('assets/txtImg.txt', function (data) {
-        var extraImages = data.split("\n");
+        var extraImages = data.split('\n');
         for (var index = 0; index < extraImages.length; index++) {
             images.push(extraImages[index]);
         }
