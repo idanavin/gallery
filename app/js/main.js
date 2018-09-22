@@ -13,6 +13,7 @@ var prevPic;
 // var text = fs.readFileSync("./txtImg.txt").toString('utf-8');
 // var imgByLine = text.split("\n");
 
+
 function change(sign) {
     switch (sign) {
         case 1:
