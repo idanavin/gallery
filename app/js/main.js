@@ -1,4 +1,5 @@
-var images = ["https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1001233_222390834578427_319555050_n.jpg?_nc_cat=104&oh=88c349afa73876ad20cfd34c6b6fc6b8&oe=5C2DB41B", "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1170845_222390877911756_1583226258_n.jpg?_nc_cat=107&oh=97e12f18f8636bc7c932d66781e4095e&oe=5C304A47", "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1005473_222390457911798_1227791846_n.jpg?_nc_cat=101&oh=093c379d5c5c5451ea022e5743300d84&oe=5C15E4C0", "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1150992_222390417911802_1716521138_n.jpg?_nc_cat=104&oh=4d3858864dbb1ae09d63f1b6de38f078&oe=5C264095"];
+var images = ["https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1001233_222390834578427_319555050_n.jpg?_nc_cat=104&oh=88c349afa73876ad20cfd34c6b6fc6b8&oe=5C2DB41B", "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1170845_222390877911756_1583226258_n.jpg?_nc_cat=107&oh=97e12f18f8636bc7c932d66781e4095e&oe=5C304A47",
+ "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1005473_222390457911798_1227791846_n.jpg?_nc_cat=101&oh=093c379d5c5c5451ea022e5743300d84&oe=5C15E4C0", "https://scontent.fsdv3-1.fna.fbcdn.net/v/t1.0-9/1150992_222390417911802_1716521138_n.jpg?_nc_cat=104&oh=4d3858864dbb1ae09d63f1b6de38f078&oe=5C264095"];
 // var images = [];
 //var extraImages = [];
 var allImages = [];
@@ -34,7 +35,7 @@ function add() {
         document.getElementById("addUrlCont").innerHTML = imageUrl.validationMessage;
     }
     else {
-        images.push(imageUrl); //push and pop?.. 2nd problem
+        images.push(imageUrl.value); //push and pop?.. 2nd problem
         var newBar = document.getElementById('images');
         var newImg = document.createElement('img');
         newImg.src = images[images.length - 1];
@@ -46,9 +47,10 @@ function add() {
     }
 }
 
-function disImg() {  //general function to load images bar
+function disImg(index) {  //general function to load images bar
     var bar = document.getElementById('images');
     var barImage = document.createElement('img');
+    barImage.src = images[(index + orderIndex) % images.length];
     barImage.classList.add('bar');
     barImage.style.height = '100px';
     barImage.style.width = 'auto';
@@ -61,16 +63,16 @@ window.onload = function () {
     $.get('assets/txtImg.txt', function (data) {
         var extraImages = data.split("\n"); //new array works
         // images.push(data.split("\n")); // like this maybe?
-
         for (var index = 0; index < extraImages.length; index++) { //works but new images loded after page get created
             images.push(extraImages[index]);
         }
         prevPic = images.length; //works if images = images + extraImges
-        console.log(images);
-        console.log(extraImages);
+        // console.log(images);
+        // console.log(extraImages);
         for (var i = 0; i < images.length; i++) {
-            disImg(); // i get new imgaes.length elements
-            this.src = images[(i + orderIndex) % images.length]; //not getting the src
+            disImg(i); // i get new imgaes.length elements
+            // console.log(images[(i + orderIndex) % images.length]);
+             //not getting the src
         }
     });
 
@@ -125,7 +127,7 @@ window.onload = function () {
                     prevPic = (newPos - 1) % images.length;
                 }
                 else {
-                    console.log(images.length + 'error');
+                    // console.log(images.length + 'error');
 
                 }
             });
