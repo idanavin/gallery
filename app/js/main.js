@@ -44,19 +44,19 @@ function add() {
         newImg.style.width = 'auto';
         newImg.style.margin = '10px';
         newBar.appendChild(newImg);
-        // newBar.addEventListener('click', function () { 
-        //     var currentImage = this.src;
-        //     var newPos = images.findIndex(function (src) { return currentImage === src; });
-        //     if (newPos >= 0) {          
-        //         var main = document.getElementById('middleIMG');
-        //         main.src = this.src;
-        //         nextPic = (newPos) % images.length;
-        //         prevPic = (newPos - 1) % images.length;
-        //     }
-        //     else {
-        //         console.log(newPos + ' error');
-        //     }
-        // });
+        newBar.addEventListener('click', function () { 
+            var currentImage = this.src;
+            var newPos = images.findIndex(function (src) { return currentImage === src; });
+            if (newPos >= 0) {          
+                var main = document.getElementById('middleIMG');
+                main.src = this.src;
+                nextPic = (newPos) % images.length;
+                prevPic = (newPos - 1) % images.length;
+            }
+            else {
+                console.log(newPos + ' error');
+            }
+        });
     }
 }
 
