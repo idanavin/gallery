@@ -44,20 +44,19 @@ function add() {
         newImg.style.width = 'auto';
         newImg.style.margin = '10px';
         newBar.appendChild(newImg);
-        newBar.addEventListener('click', function () { 
-            var currentImage = this.src;
-            var newPos = images.findIndex(function (src) { return currentImage === src; });
-            if (newPos >= 0) {
-                var main = document.getElementById('middleIMG');
-                main.src = this.src;
-                nextPic = (newPos) % images.length;
-                prevPic = (newPos - 1) % images.length;
-            }
-            else {
-                console.log(newPos + ' error');
-    
-            }
-        });
+        // newBar.addEventListener('click', function () { 
+        //     var currentImage = this.src;
+        //     var newPos = images.findIndex(function (src) { return currentImage === src; });
+        //     if (newPos >= 0) {          
+        //         var main = document.getElementById('middleIMG');
+        //         main.src = this.src;
+        //         nextPic = (newPos) % images.length;
+        //         prevPic = (newPos - 1) % images.length;
+        //     }
+        //     else {
+        //         console.log(newPos + ' error');
+        //     }
+        // });
     }
 }
 
@@ -80,7 +79,7 @@ function disImg(index) {  //general function to load images bar
     barImage.style.margin = '10px';
     bar.appendChild(barImage);
     barImage.addEventListener('click', function () { 
-        var currentImage = this.src;
+        var currentImage = barImage.src;
         var newPos = images.findIndex(function (src) { return currentImage === src; });
         if (newPos >= 0) {
             var main = document.getElementById('middleIMG');
@@ -97,24 +96,24 @@ function disImg(index) {  //general function to load images bar
 
 window.onload = function () {
 
-    $(document).ready(function () {
-        $('.bar').hover(function () { //hover not working
-            $(this).animate({ height: '150px' }, 'slow');
-            $('.bar').css('filter', 'blur(5px)');
-            $(this).css('filter', 'blur(0px)');
-            $(this).css('position', 'relative');
-        }, function () {
-            $('.bar').stop();
-            $(this).animate({ height: '100px' }, 'slow');
-            $('.bar').css('filter', 'blur(0px)');
-            $(this).css('position', '');
-        });
-        $('.item5').mouseleave(function () { //perfect reset (no bugs)
-            $('.bar').stop();
-            $('.bar').animate({ height: '100px' }, 'slow');
-            $('.bar').css('filter', 'blur(0px)');
-        });
-    });
+    // $(document).ready(function () {
+    //     $('.bar').hover(function () { //hover not working
+    //         $(this).animate({ height: '150px' }, 'slow');
+    //         $('.bar').css('filter', 'blur(5px)');
+    //         $(this).css('filter', 'blur(0px)');
+    //         $(this).css('position', 'relative');
+    //     }, function () {
+    //         $('.bar').stop();
+    //         $(this).animate({ height: '100px' }, 'slow');
+    //         $('.bar').css('filter', 'blur(0px)');
+    //         $(this).css('position', '');
+    //     });
+    //     $('.item5').mouseleave(function () { //perfect reset (no bugs)
+    //         $('.bar').stop();
+    //         $('.bar').animate({ height: '100px' }, 'slow');
+    //         $('.bar').css('filter', 'blur(0px)');
+    //     });
+    // });
 
     $.get('assets/txtImg.txt', function (data) {
         var extraImages = data.split("\n");
