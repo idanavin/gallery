@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./style/main.css" />
+    <script src="./js/main.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="item1" id="addUrlCont"><form action="">
+            <input id="addUrl" type="url" min="10" max="3000" required>
+            <button onclick="add()">Add</button>
+        </form></div>
+        <div class="item2" id="prev" onclick="change(-1)"></div>
+        <div class="item3" id="main-img"></div>
+        <div class="item4" id="next" onclick="change(1)"></div>
+        <div class="item5" id="images"></div>
+
+    </div>
+    <div id="container">
+        <main id="main"></main>
+        <div id="bar"></div>
+    </div>
+</body>
+
+</html>
