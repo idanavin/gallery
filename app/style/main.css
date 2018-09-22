@@ -76,7 +76,11 @@ body {
     width: auto;
 }
 
-#prev {
+#prev, #next {
+    cursor: pointer;
+}
+
+#prev { 
     float: left;
     height: auto;
     width: 100px;
