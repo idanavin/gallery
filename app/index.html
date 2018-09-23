@@ -12,20 +12,18 @@
 </head>
 
 <body>
-    <div class="grid-container">
-        <div class="item1" id="addUrlCont">
-            <input id="addUrl" type="url" min="10" max="3000" required>
-            <button onclick="add()">Add</button>
+    <div class="container" id="bgi">
+        <div class="grid-container">
+            <div class="item1" id="addUrlCont">
+                <input id="addUrl" type="url" min="10" max="3000" required>
+                <button onclick="add()">Add</button>
+            </div>
+            <div class="item2" id="prev" onclick="change(-1)"></div>
+            <div class="item3" id="main-img"></div>
+            <div class="item4" id="next" onclick="change(1)"></div>
+            <div class="item5" id="images"></div>
         </div>
-        <div class="item2" id="prev" onclick="change(-1)"></div>
-        <div class="item3" id="main-img"></div>
-        <div class="item4" id="next" onclick="change(1)"></div>
-        <div class="item5" id="images"></div>
-
     </div>
-    <div id="container">
-        <main id="main"></main>
-        <div id="bar"></div>
     </div>
 </body>
 

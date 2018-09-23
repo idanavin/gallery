@@ -48,7 +48,7 @@ function add() {
     }
 }
 
-function disMainImg() {  
+function disMainImg() {
     var main = document.getElementById("main-img");
     var mainImage = document.createElement('img');
     mainImage.classList.add('main-img');
@@ -66,7 +66,7 @@ function disImg(index) {  //general function to load images bar
     barImage.style.width = 'auto';
     barImage.style.margin = '10px';
     bar.appendChild(barImage);
-    barImage.addEventListener('click', function () { 
+    barImage.addEventListener('click', function () {
         var currentImage = images[index];
         var newPos = images.findIndex(function (src) { return currentImage === src; });
         if (newPos >= 0) {
@@ -82,8 +82,9 @@ function disImg(index) {  //general function to load images bar
     });
 }
 
-window.onload = function () {
 
+window.onload = function () {
+    
     // $(document).ready(function () {
     //     $('.bar').hover(function () { //hover not working
     //         $(this).animate({ height: '150px' }, 'slow');
@@ -118,8 +119,8 @@ window.onload = function () {
     var prev = document.getElementById('prev');
     var prevImg = document.createElement('img')
     prevImg.src = 'https://image.flaticon.com/icons/svg/60/60775.svg';
-    prevImg.classList.add('prev');
-    prevImg.style.width = '100px';
+    prevImg.classList.add('prevIMG');
+    prevImg.style.width = '150px';
     prev.appendChild(prevImg);
     prev.addEventListener('click', function () {
         var main = document.getElementById('middleIMG');
@@ -130,12 +131,25 @@ window.onload = function () {
     var next = document.getElementById('next');
     var nextImg = document.createElement('img');
     nextImg.src = 'https://image.flaticon.com/icons/svg/60/60775.svg';
-    nextImg.classList.add('next');
-    nextImg.style.width = '100px';
+    nextImg.classList.add('nextIMG');
+    nextImg.style.width = '150px';
     next.appendChild(nextImg);
     next.addEventListener('click', function () {
         var main = document.getElementById('middleIMG');
         main.src = images[nextPic];
         change();
+    });
+
+    $(document).ready(function () {
+        $('.prevIMG').click(function () {
+            $(this).animate({width: '100px', right: '200px'}, 50);
+            $(this).css('box-shadow', '0 10px 35px rgba(0, 0, 0, 0.4)');
+            $(this).animate({width: '150px', left: '200px'}, 'fast');
+            $(this).css('box-shadow', '');
+        });
+        $('.nextIMG').click(function () {
+            $(this).animate({width: '100px', right: '200px'}, 50);
+            $(this).animate({width: '150px', left: '200px'}, 'fast');
+        });
     });
 }
