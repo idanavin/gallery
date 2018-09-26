@@ -81,7 +81,24 @@ function disImg(index) {  //general function to load images bar
         }
     });
 }
+var BASE_URL = 'https://api.instagram.com/v1'
 
+var tagsByName = function( name, callback ) {
+    var endpoint = this.BASE_URL + '/tags/' + name + '/media/recent?client_id=' + this.config.client_id;
+    this.getJSON( endpoint, callback );
+}
+
+$('#instagram').click(function (url, callback) {  
+    $.get(url, function () {  })
+});
+
+var xhr = new XMLHttpRequest();
+xhr.open('GET', url, ture);
+xhr.onload = function(){
+    if (this.status == 200) {
+        
+    }
+}
 
 window.onload = function () {
     
